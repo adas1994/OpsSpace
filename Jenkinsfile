@@ -1,14 +1,22 @@
 pipeline {
-    agent { docker { image 'python:2.6.6' } }
+    agent any
+    environment {
+    venv = 'source venv/bin/activate'
+    }
     stages {
-        stage('install') {
+        stage('virtual env') {
             steps {
-                sh 'python setup.py install'
+	        sh 'ls'
+		sh 'test ! -d venv || rm -rf venv'
+		sh '/home/jenkins/python/bin/virtualenv venv'
+		sh 'ls'
+              
             }
         }
         stage('test') {
             steps {
-                sh 'opsspace-test'         
+                sh 'cd venv'
+		sh 'opsspace-test'         
             }
 
         }
