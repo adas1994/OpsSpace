@@ -15,7 +15,7 @@ pipeline {
         }
         stage('test') {
             steps {
-      
+                sh 'source venv/bin/activate'      
 		sh 'opsspace-test'         
             }
 
