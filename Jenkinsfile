@@ -8,7 +8,7 @@ pipeline {
             steps {
 	        sh 'ls'
 		sh 'test ! -d venv || rm -rf venv'
-		sh '/home/jenkins/python/bin/virtualenv venv'
+		sh '/var/lib/jenkins/.local/bin/virtualenv venv'
 		sh 'ls'
               
             }
